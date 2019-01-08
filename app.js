@@ -15,6 +15,9 @@ app.get('/calorie_counter', function(req, res) {
   res.render('calorie_counter.ejs');
 });
 app.get('/', function(req, res) {
+  res.render('loading.ejs');
+});
+app.get('/home', function(req, res) {
   res.render('home.ejs');
 });app.get('/water_intake', function(req, res) {
   res.render('water_intake.ejs');
