@@ -22,6 +22,9 @@ app.get('/calorie_counter', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+  res.render('loading.ejs');
+});
+app.get('/home', function(req, res) {
   res.render('home.ejs');
 });
 
