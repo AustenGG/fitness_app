@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
-const sequelize = new Sequelize('fitness', 'joshharris', 'password', {
+const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
+  logging: false,
   pool: {
     max: 5,
     min: 0,
@@ -103,7 +104,6 @@ exports.login = function(req, res) {
     else if (password == users.password){
       //Represents a sucessfull login
       req.session.username = users.username;
-      req.session.userid = users.id;
       console.log('User ' + req.session.username + ' logged in, id:' + req.session.userid);
       res.redirect('/home');
     }
@@ -120,8 +120,9 @@ exports.login = function(req, res) {
 //Adds water intake to database
 exports.addWater = function(req, res) {
   var amount = req.body.amount;
+  var user = req.session.username;
   Water.create({
-    user: "testuser",
+    user: user,
     amount: amount
   });
   res.redirect('/home');
@@ -129,7 +130,7 @@ exports.addWater = function(req, res) {
 
 exports.addWorkout = function(req, res) {
   var workout = req.body.workout;
-  var user = req.session.usernmae;
+  var user = req.session.username;
   Workout.create({
     user: user,
     workout: workout

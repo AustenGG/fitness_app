@@ -7,7 +7,7 @@ const port = 8080;
 
 app.use(session({
   secret: 'password',
-  resave: false,
+  resave: true,
   saveUninitialized: false
 }));
 app.use(express.static(__dirname + '/views'));
