@@ -34,8 +34,14 @@ app.get('/home', function(req, res) {
   res.render('home.ejs');
 });
 
-app.get('/water', function(req, res) {
-  res.render('water_intake.ejs');
+app.get('/water', (req, res) => {
+  // if (req.session.user == null) {
+  //   res.redirect('/login');
+  // }
+  // else {
+  //   db.getWater(req, res);
+  // }
+  db.getWater(req, res);
 });
 
 app.get('/workout', function(req, res) {

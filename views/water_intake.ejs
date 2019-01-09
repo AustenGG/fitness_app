@@ -10,5 +10,10 @@
   <input type="text" name="amount" placeholder="Amount (ml)"><br>
   <input type="submit" name="Submit" value="Enter" class="btn"><br>
 </form>
+        <% for (var i=0; i < data.length; i++) { %>
+          <div>
+            <h4><%= data[i].dataValues.amount %></h4>, <%= data[i].dataValues.createdAt %><br>
+          </div><br>
+          <% } %>
   </body>
 </html>
