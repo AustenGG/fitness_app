@@ -58,6 +58,6 @@ app.get('*', function(req, res) {
 app.post('/water', db.addWater);
 app.post('/register', db.register);
 app.post('/login', db.login);
-
+app.post('/addworkout', db.addWorkout);
 
 app.listen(port, () => console.log(`The app is running on port: ${port}! Make sure to open it in your browser!`));
