@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
-const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
+const sequelize = new Sequelize('fitness', 'joshharris', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -32,6 +32,20 @@ const Water = sequelize.define('water', {
   }
 });
 
+const Workout = sequelize.define('workout', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  user: {
+    type: Sequelize.STRING
+  },
+  workout: {
+    type: Sequelize.STRING
+  }
+});
+
 const Users = sequelize.define('users', {
   id: {
     type: Sequelize.INTEGER,
@@ -48,6 +62,7 @@ const Users = sequelize.define('users', {
 
 Users.sync();
 Water.sync();
+Workout.sync();
 
 exports.register = function(req, res) {
   var username = req.body.username;
@@ -110,4 +125,14 @@ exports.addWater = function(req, res) {
     amount: amount
   });
   res.redirect('/home');
-}
+};
+
+exports.addWorkout = function(req, res) {
+  var workout = req.body.workout;
+  var user = req.session.usernmae;
+  Workout.create({
+    user: user,
+    workout: workout
+  });
+    res.redirect('/workout');
+};
