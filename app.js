@@ -10,6 +10,7 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,7 +37,7 @@ app.get('/', function(req, res) {
   res.render('loading.ejs');
 });
 app.get('/home', function(req, res) {
-  res.render('home.ejs');
+  res.render('home.ejs', {user: req.session.username});
 });
 
 app.get('/water', (req, res) => {
@@ -49,7 +50,7 @@ app.get('/water', (req, res) => {
   db.getWater(req, res);
 });
 app.get('/logout', function(req, res) {
-  req.seesion.username = null;
+  req.session.username = null;
   res.redirect('/home');
 });
 
