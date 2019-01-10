@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
-const sequelize = new Sequelize('fitness', 'jordanbailey', 'Dyjjmsr123d', {
+const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,

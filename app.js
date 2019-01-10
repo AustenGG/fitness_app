@@ -27,8 +27,8 @@ app.get('/BMI', function(req, res) {
 
 app.get('/calorie_counter', function(req, res) {
   res.render('calorie_counter.ejs');
-  res.sendFile(path.join(__dirname+'/view/script.js'));
-  res.sendFile(path.join(__dirname+'/view/bmr.js'));
+  //res.sendFile(path.join(__dirname+'/view/script.js'));
+  //res.sendFile(path.join(__dirname+'/view/bmr.js'));
 
 
 });
