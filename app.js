@@ -45,7 +45,7 @@ app.get('/water', (req, res) => {
 });
 
 app.get('/workout', function(req, res) {
-  res.render('workout.ejs');
+  db.getWorkouts(req, res)
 });
 
 app.get('/register', function(req, res) {
