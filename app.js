@@ -12,42 +12,44 @@ app.use(session({
 }));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//app.get('/', (req, res) => res.send({"code":400, "success":"Server running"}));
-// if you want to view a hmtl file
-// app.get('/page', (req, res) => res.sendFile(__dirname + '/views/page.html'));
-
 //GET requests
 app.get('/BMI', function(req, res) {
-  res.render('BMI.ejs');
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+      res.render('BMI.ejs');
+  }
 });
-
 app.get('/calorie_counter', function(req, res) {
-  res.render('calorie_counter.ejs');
-  //res.sendFile(path.join(__dirname+'/view/script.js'));
-  //res.sendFile(path.join(__dirname+'/view/bmr.js'));
-
-
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    res.render('calorie_counter.ejs');
+  }
 });
-
 app.get('/', function(req, res) {
   res.render('loading.ejs');
 });
 app.get('/home', function(req, res) {
-  res.render('home.ejs', {user: req.session.username});
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    res.render('home.ejs', {user: req.session.username});
+  }
 });
-
 app.get('/water', (req, res) => {
-  // if (req.session.user == null) {
-  //   res.redirect('/login');
-  // }
-  // else {
-  //   db.getWater(req, res);
-  // }
-  db.getWater(req, res);
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    db.getWater(req, res);
+  }
 });
 app.get('/logout', function(req, res) {
   req.session.username = null;
@@ -55,17 +57,19 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/workout', function(req, res) {
-  db.getWorkouts(req, res)
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    db.getWorkouts(req, res);
+  }
 });
-
 app.get('/register', function(req, res) {
   res.render('register.ejs');
 });
-
 app.get('/login', function(req, res) {
   res.render('login.ejs');
 });
-
 app.get('*', function(req, res) {
   res.render('error.ejs');
 });
