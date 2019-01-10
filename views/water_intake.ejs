@@ -25,7 +25,7 @@
       <a href="/BMI" >BMI</a>
       <a href="/calorie_counter" >Calorie Counter</a>
       <a href="/workout" >Workout</a>
-      <a href="/water" >water intake</a>
+      <a href="/water" >Water Intake</a>
 
     </div>
   </div>
@@ -38,7 +38,8 @@ Water Intake Tracker
 <form action="/water" method="POST" class="form-horizontal"><br>
   <input type="text" name="amount" placeholder="Amount (ml)"><br>
   <input type="submit" name="Submit" value="Enter" class="btn"><br>
-</form>
+</form><br>
+<%= user %>'s water intake history:<br><br>
 <% for (var i=0; i < data.length; i++) { %>
   <div>
     <%= data[i].dataValues.amount %>ml, <%= data[i].dataValues.createdAt %><br>
