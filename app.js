@@ -43,6 +43,10 @@ app.get('/water', (req, res) => {
   // }
   db.getWater(req, res);
 });
+app.get('/logout', function(req, res) {
+  req.seesion.username = null;
+  res.redirect('/home');
+});
 
 app.get('/workout', function(req, res) {
   res.render('workout.ejs');
