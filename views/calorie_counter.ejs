@@ -4,8 +4,40 @@
   </head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="jquery/bmr.js"></script>
-  <script src="src/script.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+    $('#Male').click(function(){
+      var age = $('#age').val();
+      var height = $('#Height').val();
+      var weight = $('#Weight').val();
+
+      var result = 10*weight+6.25*height-5*age+5;
+
+      $('#bmr').text(result);
+    });
+
+
+    $('#Female').click(function(){
+      // BmrCalc1.reset()
+      var age = $('#age').val();
+      var height = $('#Height').val();
+      var weight = $('#Weight').val();
+
+      console.log(age + " " + height + " " + weight);
+
+      var result = 10*weight+6.25*height-5*age-161;
+
+
+      $('#bmr').text(result);
+    });
+
+
+  });
+
+  </script>
+
   <body>
     <section>
       <center>

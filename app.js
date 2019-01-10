@@ -11,6 +11,7 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(express.static(__dirname + '/views'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -25,6 +26,10 @@ app.get('/BMI', function(req, res) {
 
 app.get('/calorie_counter', function(req, res) {
   res.render('calorie_counter.ejs');
+  res.sendFile(path.join(__dirname+'/view/script.js'));
+  res.sendFile(path.join(__dirname+'/view/bmr.js'));
+
+
 });
 
 app.get('/', function(req, res) {
