@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <title>BMR</title>
   </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="jquery/bmr.js"></script>
+  <script src="src/script.js"></script>
   <body>
-    calorie_counter
+    <section>
+      <center>
+      <h1> BMR calculator </h1>
+      <p>
+        <input type="number" name="amount"  min="0" id="age" placeholder="Age" >
+        <input type="number" name="amount"  min="0" id="Weight" placeholder="Weight(kg)" >
+        <input type="number" name="amount"  min="0" id="Height" placeholder="Height(cm)" >
+      </p>
+      <h2><span id="bmr"></span> </h2>
+      <p>
+        <button id="Male">Male</button>
+        <button id="Female">Female</button>
+      </p>
+    </center>
+    </section>
+
   </body>
 </html>
