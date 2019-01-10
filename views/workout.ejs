@@ -11,4 +11,9 @@
       <input type="text" name="workout" placeholder="Enter a workout">
       <input type="submit" action = "Submit" name="Submit" value="Submit" class="btn"><br>
   </body>
+  <% for (var i=0; i < data.length; i++) { %>
+    <div>
+      Type: <%= data[i].dataValues.workout %>, <%= data[i].dataValues.createdAt %><br>
+    </div><br>
+    <% } %>
 </html>

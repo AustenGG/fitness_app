@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
-const sequelize = new Sequelize('fitness', 'root', 'password', {
+const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -104,7 +104,7 @@ exports.login = function(req, res) {
     else if (password == users.password){
       //Represents a sucessfull login
       req.session.username = users.username;
-      console.log('User ' + req.session.username + ' logged in, id:' + req.session.userid);
+      console.log('User ' + req.session.username + ' logged in');
       res.redirect('/home');
     }
     else {
@@ -131,7 +131,7 @@ exports.addWater = function(req, res) {
 
 exports.getWater = function(req, res) {
   var user = req.session.username;
-  console.log(user);
+  //console.log(user);
   Water.findAll( {where: {user: user} }).then(data => {
   if (data == null) {
     //Represents if username not found
@@ -141,8 +141,26 @@ exports.getWater = function(req, res) {
     });
   }
   else {
-    console.log(data);
+    //console.log(data);
     res.render('water_intake.ejs', { data: data, user});
+  }
+  });
+};
+
+exports.getWorkouts = function(req, res) {
+  var user = req.session.username;
+  //console.log(user);
+  Workout.findAll( {where: {user: user} }).then(data => {
+  if (data == null) {
+    //Represents if username not found
+    res.send({
+    "code":204,
+    "fail":"No information for current user"
+    });
+  }
+  else {
+    //console.log(data);
+    res.render('workout.ejs', { data: data, user});
   }
   });
 };

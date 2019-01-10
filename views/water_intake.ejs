@@ -12,7 +12,7 @@
 </form>
         <% for (var i=0; i < data.length; i++) { %>
           <div>
-            <h4><%= data[i].dataValues.amount %></h4>, <%= data[i].dataValues.createdAt %><br>
+            <%= data[i].dataValues.amount %>ml, <%= data[i].dataValues.createdAt %><br>
           </div><br>
           <% } %>
   </body>
