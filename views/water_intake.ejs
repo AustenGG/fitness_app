@@ -1,59 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <div class="nav">
+      <div class="nav-header">
+        <div class="nav-title">
 
-
-    <div>
-        </div><head>
-          <link rel="stylesheet" href="style.css">
-          <div class="nav">
-          <div class="nav-header">
-            <div class="nav-title">
-
-            </div>
-          </div>
-          <input type="checkbox" id="nav-check">
-          <div class="nav-links2">
-             <a href="login" >Login </a>
-          </div>
-          <div class="nav-btn">
-            <label for="nav-check">
-              <span></span>
-              <span></span>
-              <span></span>
-            </label>
-          </div>
-        </head>
-          <input type="checkbox" id="nav-check">
-          <div class="nav-links">
-            <a href="/home" >Home</a>
-            <a href="/BMI" >BMI</a>
-            <a href="/calorie_counter" >Calorie Counter</a>
-            <a href="/workout" >Workout</a>
-            <a href="/water" >water intake</a>
-
-          </div>
         </div>
+      </div>
+      <input type="checkbox" id="nav-check">
+      <div class="nav-links2">
+        <a href="login" >Login </a>
+      </div>
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+    <input type="checkbox" id="nav-check">
+    <div class="nav-links">
+      <a href="/home" >Home</a>
+      <a href="/BMI" >BMI</a>
+      <a href="/calorie_counter" >Calorie Counter</a>
+      <a href="/workout" >Workout</a>
+      <a href="/water" >water intake</a>
 
+    </div>
+  </div>
 
-
-
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    home
-  </body>
+  <meta charset="utf-8">
+</head>
+<body>
 </html>
-    water_intake
-    <form action="/water" method="POST" class="form-horizontal"><br>
+Water Intake Tracker
+<form action="/water" method="POST" class="form-horizontal"><br>
   <input type="text" name="amount" placeholder="Amount (ml)"><br>
   <input type="submit" name="Submit" value="Enter" class="btn"><br>
 </form>
-        <% for (var i=0; i < data.length; i++) { %>
-          <div>
-            <%= data[i].dataValues.amount %>ml, <%= data[i].dataValues.createdAt %><br>
-          </div><br>
-          <% } %>
-  </body>
+<% for (var i=0; i < data.length; i++) { %>
+  <div>
+    <%= data[i].dataValues.amount %>ml, <%= data[i].dataValues.createdAt %><br>
+  </div><br>
+  <% } %>
+</body>
 </html>
