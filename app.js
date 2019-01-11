@@ -70,6 +70,15 @@ app.get('/register', function(req, res) {
 app.get('/login', function(req, res) {
   res.render('login.ejs');
 });
+<<<<<<< Updated upstream
+=======
+
+app.get('/graph', function(req, res) {
+  res.render('graph.ejs');
+
+});
+
+>>>>>>> Stashed changes
 app.get('*', function(req, res) {
   res.render('error.ejs');
 });
