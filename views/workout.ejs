@@ -42,7 +42,8 @@
       <h3><%= user %>'s workout history:</h3><br>
       <% for (var i=0; i < data.length; i++) { %>
         <div>
-          Type: <%= data[i].dataValues.workout %>, <%= data[i].dataValues.createdAt %><br>
+          <b>Workout: </b><%= data[i].dataValues.workout %><br>
+          <b>When: </b><%= data[i].dataValues.createdAt %><br>
         </div><br>
         <% } %>
       </body>

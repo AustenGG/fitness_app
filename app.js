@@ -53,7 +53,7 @@ app.get('/water', (req, res) => {
 });
 app.get('/logout', function(req, res) {
   req.session.username = null;
-  res.redirect('/home');
+  res.redirect('/login');
 });
 
 app.get('/workout', function(req, res) {
