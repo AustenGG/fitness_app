@@ -1,66 +1,68 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<script>
-window.onload = function graph() {
-var caloriesM=Number(document.getElementById("Monday").value);
-var caloriesT=Number(document.getElementById("Tuesday").value);
-var caloriesW=Number(document.getElementById("Wednesday").value);
-var caloriesTh=Number(document.getElementById("Thursday").value);
-var caloriesFr=Number(document.getElementById("Friday").value);
-var caloriesSat=Number(document.getElementById("Saturday").value);
-var caloriesSun=Number(document.getElementById("Sunday").value);
-
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-
-	title:{
-		text:"Calorie consumption"
-	},
-	axisX:{
-		interval: 1
-	},
-	axisY2:{
-		interlacedColor: "rgba(1,77,101,.2)",
-		gridColor: "rgba(1,77,101,.1)",
-		title: "Number of Calories"
-	},
-	data: [{
-		type: "bar",
-		name: "days",
-		axisYType: "secondary",
-		color: "#014D65",
-
-		dataPoints: [
-			{ y: caloriesM, label: "Monday"},
-			{ y: caloriesT, label: "Tuesday"},
-			{ y: caloriesW, label: "Wednesday"},
-			{ y: caloriesTh, label: "Thursday"},
-			{ y: caloriesFr, label: "Friday"},
-			{ y: caloriesSat, label: "Saturday"},
-			{ y: caloriesSun, label: "Sunday"}
-			]
-	}]
-});
-chart.render();
-
-}
-</script>
 </head>
 <body>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<p>
+		<center>
+
+			<form action="">
+				<input type="text" placeholder="Monday" id="Monday">  <input type="text" placeholder="Tuesday" id="Tuesday">   <input type="text" placeholder="Wednesday" id="Wednesday">
+				<input type="text" placeholder="Thursday" id="Thursday">   <input type="text" placeholder="Friday" id="Friday">   <input type="text" placeholder="Saturday" id="Saturday">
+				<input type="text" placeholder="Sunday" id="Sunday">
+
+				<input type="button" id="button" value="Submit">
+			</form>
+		</center>
+	</p>
 </body>
-<p>
-	<center>
+<script>
 
-		<form >
-  <input type="text" placeholder="Monday" id="Monday">  <input type="text" placeholder="Tuesday" id="Tuesday">   <input type="text" placeholder="Wednesday" id="Wednesday">
-	<input type="text" placeholder="Thursday" id="Thursday">   <input type="text" placeholder="Friday" id="Friday">   <input type="text" placeholder="Saturday" id="Saturday">
-	<input type="text" placeholder="Sunday" id="Sunday">
+function graph() {
+	var caloriesM=Number(document.getElementById("Monday").value);
+	var caloriesT=Number(document.getElementById("Tuesday").value);
+	var caloriesW=Number(document.getElementById("Wednesday").value);
+	var caloriesTh=Number(document.getElementById("Thursday").value);
+	var caloriesFr=Number(document.getElementById("Friday").value);
+	var caloriesSat=Number(document.getElementById("Saturday").value);
+	var caloriesSun=Number(document.getElementById("Sunday").value);
 
-	<input type="submit">
-		</form>
-</center>
-</p>
+	var chart = new CanvasJS.Chart("chartContainer", {
+		animationEnabled: true,
+
+		title:{
+			text:"Calorie consumption"
+		},
+		axisX:{
+			interval: 1
+		},
+		axisY2:{
+			interlacedColor: "rgba(1,77,101,.2)",
+			gridColor: "rgba(1,77,101,.1)",
+			title: "Number of Calories"
+		},
+		data: [{
+			type: "bar",
+			name: "days",
+			axisYType: "secondary",
+			color: "#014D65",
+
+			dataPoints: [
+				{ y: caloriesM, label: "Monday"},
+				{ y: caloriesT, label: "Tuesday"},
+				{ y: caloriesW, label: "Wednesday"},
+				{ y: caloriesTh, label: "Thursday"},
+				{ y: caloriesFr, label: "Friday"},
+				{ y: caloriesSat, label: "Saturday"},
+				{ y: caloriesSun, label: "Sunday"}
+			]
+		}]
+	});
+	chart.render();
+}
+window.onload = graph;
+document.getElementById("button").onclick = graph;
+</script>
 </html>
