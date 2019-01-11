@@ -33,8 +33,8 @@
   <meta charset="utf-8">
 </head>
 <body>
-</html>
-Water Intake Tracker
+  <div id="main">
+<h1>Water Intake Tracker</h1>
 <form action="/water" method="POST" class="form-horizontal"><br>
   <input type="text" name="amount" placeholder="Amount (ml)"><br>
   <input type="submit" name="Submit" value="Enter" class="btn"><br>
@@ -45,5 +45,6 @@ Water Intake Tracker
     <%= data[i].dataValues.amount %>ml, <%= data[i].dataValues.createdAt %><br>
   </div><br>
   <% } %>
+</div>
 </body>
 </html>
