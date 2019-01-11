@@ -39,7 +39,7 @@
       <input type="text" name="workout" placeholder="Enter a workout">
       <input type="submit" action = "Submit" name="Submit" value="Submit" class="btn"><br><br>
 
-      <%= user %>'s workout history:<br><br>
+      <h3><%= user %>'s workout history:</h3><br>
       <% for (var i=0; i < data.length; i++) { %>
         <div>
           Type: <%= data[i].dataValues.workout %>, <%= data[i].dataValues.createdAt %><br>
