@@ -61,6 +61,7 @@ const Users = sequelize.define('users', {
   }
 });
 
+//Creates the tables if they don't already exist
 Users.sync();
 Water.sync();
 Workout.sync();
