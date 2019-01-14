@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-// const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
 const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
@@ -181,4 +180,35 @@ exports.addWorkout = function(req, res) {
     workout: workout
   });
   res.redirect('/workout');
+};
+
+exports.getHome = function(req, res) {
+  var user = req.session.username;
+  //var waterData = [];
+  //var workoutData = [];
+  Water.findAll({
+    limit: 1,
+    where: {user: user},
+    order: [ [ 'createdAt', 'DESC' ]]
+  }).then(waterData => {
+    //console.log(data);
+    //waterData = data;
+    Workout.findAll({
+      limit: 1,
+      where: {user: user},
+      order: [ [ 'createdAt', 'DESC' ]]
+    }).then(workoutData => {
+      //workoutData = data;
+      var data = [];
+      data.push(waterData);
+      data.push(workoutData);
+      //console.log(data);
+      //console.log(data[0][0].dataValues.amount);
+      res.render('home.ejs', {data: data, user});
+    });
+  });
+
+  //res.render('home.ejs', {data: waterData, workoutData, user});
+  //console.log(waterData);
+  //console.log(workoutData);
 };

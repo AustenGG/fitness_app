@@ -34,7 +34,11 @@
     <meta charset="utf-8">
   </head>
   <body>
-    Current logged in user: <b><%= user %></b>
-    <br>///Homepage needs content///
+    Current logged in user: <b><%= user %></b><br>
+    <div style="border:solid;text-align:center;margin:auto;width:auto;">
+    <b><br><%= user %>'s latest stats:<br><br></b>
+    <b>Last drink:</b> <%= data[0][0].dataValues.amount %>ml, <%= data[0][0].dataValues.createdAt %><br><br>
+    <b>Last workout done:</b> <%= data[1][0].dataValues.workout %>, <%= data[1][0].dataValues.createdAt %>
+  </div>
   </body>
 </html>
