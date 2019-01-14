@@ -40,7 +40,8 @@ app.get('/home', function(req, res) {
     res.redirect('/login');
   }
   else {
-    res.render('home.ejs', {user: req.session.username});
+    db.getHome(req, res);
+    //res.render('home.ejs', {user: req.session.username});
   }
 });
 app.get('/water', (req, res) => {

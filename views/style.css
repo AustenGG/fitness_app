@@ -158,3 +158,15 @@ display: none;
   height: calc(100vh - 50px);
   overflow-y: auto;
 }
+.postbox {
+  width: 550px;
+  border-style: solid, 2px;
+  margin: auto;
+  text-align: center;
+}
+#postbox {
+  width: 550px;
+  border-style: solid, 2px;
+  margin: auto;
+  text-align: center;
+}
