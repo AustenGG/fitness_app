@@ -24,12 +24,12 @@ app.get('/BMI', function(req, res) {
       res.render('BMI.ejs');
   }
 });
-app.get('/calorie_counter', function(req, res) {
+app.get('/BMR', function(req, res) {
   if (req.session.username == null) {
     res.redirect('/login');
   }
   else {
-    res.render('calorie_counter.ejs');
+    res.render('BMR.ejs');
   }
 });
 app.get('/', function(req, res) {

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
+const sequelize = new Sequelize('fitness', 'joshharris', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -77,6 +77,7 @@ const Users = sequelize.define('users', {
   }
 });
 
+//Creates the tables if they don't already exist
 Users.sync();
 Water.sync();
 Workout.sync();
