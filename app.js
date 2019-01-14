@@ -63,6 +63,14 @@ app.get('/workout', function(req, res) {
   else {
     db.getWorkouts(req, res);
   }
+  });
+app.get('/food', function(req, res) {
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    db.getFood(req, res);
+  }
 });
 app.get('/register', function(req, res) {
   res.render('register.ejs');
@@ -82,5 +90,6 @@ app.post('/water', db.addWater);
 app.post('/register', db.register);
 app.post('/login', db.login);
 app.post('/addworkout', db.addWorkout);
+app.post('/addfood', db.addFood);
 
 app.listen(port, () => console.log(`The app is running on port: ${port}! Make sure to open it in your browser!`));

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // const sequelize = new Sequelize('mysql://root:password@127.0.0.1:3306/instagram');
-const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
+const sequelize = new Sequelize('fitness', 'austen.grice-griffin', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -166,7 +166,7 @@ exports.getWorkouts = function(req, res) {
       });
     }
     else {
-      //console.log(data);
+      console.log(data);
       res.render('workout.ejs', { data: data, user});
     }
   });
@@ -181,4 +181,33 @@ exports.addWorkout = function(req, res) {
     workout: workout
   });
   res.redirect('/workout');
+};
+
+exports.getFood = function(req, res) {
+  var user = req.session.username;
+  //console.log(user);
+  Workout.findAll( {where: {user: user} }).then(data => {
+    if (data == null) {
+      //Represents if username not found
+      res.send({
+        "code":204,
+        "fail":"No information for current user"
+      });
+    }
+    else {
+      console.log(data);
+      res.render('food.ejs', { data: data, user});
+    }
+  });
+};
+
+//Adds a workout to the database
+exports.addFood = function(req, res) {
+  var food = req.body.food;
+  var user = req.session.username;
+  Workout.create({
+    user: user,
+    food: food
+  });
+  res.redirect('/food');
 };
