@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('fitness', 'joshharris', 'password', {
+const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -217,12 +217,21 @@ exports.getHome = function(req, res) {
       order: [ [ 'createdAt', 'DESC' ]]
     }).then(workoutData => {
       //workoutData = data;
-      var data = [];
-      data.push(waterData);
-      data.push(workoutData);
-      //console.log(data);
-      //console.log(data[0][0].dataValues.amount);
-      res.render('home.ejs', {data: data, user});
+      Weight.findAll({
+        limit: 1,
+        where: {user: user},
+        order: [ [ 'date', 'DESC' ]]
+      }).then(weightData => {
+        //workoutData = data;
+        var data = [];
+        data.push(waterData);
+        data.push(workoutData);
+        data.push(weightData);
+        //console.log(data);
+        //console.log(data[0][0].dataValues.amount);
+        res.render('home.ejs', {data: data, user});
+
+      });
     });
   });
 
@@ -261,16 +270,16 @@ exports.addWeight = function(req, res) {
 exports.getWeight = function(req, res) {
   var user = req.session.username;
   Weight.findAll( {where: {user: user},
-  order: [ [ 'date', 'DESC' ]]}).then(data => {
-    if (data == null) {
-      //Represents if username not found
-      res.send({
-        "code":204,
-        "fail":"No information for current user"
-      });
-    }
-    else {
-      res.render('weight.ejs', { data: data, user});
-    }
-  });
-};
+    order: [ [ 'date', 'DESC' ]]}).then(data => {
+      if (data == null) {
+        //Represents if username not found
+        res.send({
+          "code":204,
+          "fail":"No information for current user"
+        });
+      }
+      else {
+        res.render('weight.ejs', { data: data, user});
+      }
+    });
+  };
