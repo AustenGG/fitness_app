@@ -46,6 +46,22 @@ const Workout = sequelize.define('workout', {
     type: Sequelize.STRING
   }
 });
+const Food = sequelize.define('food', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  user: {
+    type: Sequelize.STRING
+  },
+  food: {
+    type: Sequelize.STRING
+  },
+  calories: {
+    type: Sequelize.STRING
+  }
+});
 
 const Users = sequelize.define('users', {
   id: {
@@ -65,6 +81,8 @@ const Users = sequelize.define('users', {
 Users.sync();
 Water.sync();
 Workout.sync();
+Food.sync();
+
 
 exports.register = function(req, res) {
   var username = req.body.username;
@@ -186,7 +204,7 @@ exports.addWorkout = function(req, res) {
 exports.getFood = function(req, res) {
   var user = req.session.username;
   //console.log(user);
-  Workout.findAll( {where: {user: user} }).then(data => {
+  Food.findAll( {where: {user: user} }).then(data => {
     if (data == null) {
       //Represents if username not found
       res.send({
@@ -205,9 +223,12 @@ exports.getFood = function(req, res) {
 exports.addFood = function(req, res) {
   var food = req.body.food;
   var user = req.session.username;
-  Workout.create({
+  var calories = req.body.calories;
+  Food.create({
     user: user,
-    food: food
+    food: food,
+    calories: calories
+
   });
   res.redirect('/food');
 };

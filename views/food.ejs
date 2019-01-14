@@ -32,7 +32,7 @@
 
   <meta charset="utf-8">
 </head>
-<body>
+  <body>
   <h1> Food tracker! </h1>
     <h2> Enter a food </h2>
     <form action="/addfood" method="POST" class="form-horizontal">
@@ -47,7 +47,7 @@
           <b>Food: </b><%= data[i].dataValues.food %><br>
           <b>Calories: </b><%= data[i].dataValues.calories %><br>
 
-          <b>When: </b><%= data[i].dataValues.createdAt %><br>
+          <!-- <b>When: </b><%= data[i].dataValues.createdAt %><br> -->
         </div><br>
         <% } %>
       </body>
