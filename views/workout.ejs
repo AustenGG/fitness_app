@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <% include  user_logged.ejs %>
 
+    <% include  user_logged.ejs %>
 
     <meta charset="utf-8">
     <title>Workout tracker!</title>
   </head>
-  <center><body>
-    <h1> Workout tracker! </h2>
+  <body><center>
+    <h1> Workout tracker! </h1>
     <h2> Please enter your workout </h2>
     <form action="/addworkout" method="POST" class="form-horizontal">
       <input type="text" name="workout" placeholder="Enter a workout">
-
-
-
-      <input type="submit" action = "Submit" name="Submit" value="Submit" class="btn"><br>
-  </body>
+      <input type="submit" action = "Submit" name="Submit" value="Submit" class="btn">
+    </form><br>
   <% for (var i=0; i < data.length; i++) { %>
     <div>
       Type: <%= data[i].dataValues.workout %>, <%= data[i].dataValues.createdAt %><br>
     </div><br>
     <% } %>
+  </center></body>
 </html>

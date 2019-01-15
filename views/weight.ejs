@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <div class="nav">
+      <div class="nav-header">
+        <div class="nav-title">
+
+        </div>
+      </div>
+      <input type="checkbox" id="nav-check">
+      <div class="nav-links2">
+        <a href="login" >Login </a>
+      </div>
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+    <input type="checkbox" id="nav-check">
+    <div class="nav-links">
+      <a href="/home" >Home</a>
+      <a href="/BMI" >BMI</a>
+      <a href="/BMR" >BMR</a>
+      <a href="/workout" >Workout</a>
+      <a href="/water" >Water Intake</a>
+      <a href="/weight">Weight</a>
+
+    </div>
+  </div>
+
+  <meta charset="utf-8">
+</head>
+<body><center>
+  <div id="main">
+<h1>Weight Tracker</h1><br>
+Please note: only one entry can be made for each date
+<form action="/weight" method="POST" class="form-horizontal"><br>
+  <input type="text" name="weight" placeholder="Weight (Kg)"><br>
+  <input type="date" name="date" placeholder="Date (MM-DD-YYYY)"><br>
+  <input type="submit" name="Submit" value="Enter" class="btn"><br>
+</form><br>
+<%= user %>'s weight history:<br><br>
+<% for (var i=0; i < data.length; i++) { %>
+  <div>
+    <%= data[i].dataValues.weight %>Kg, <%= data[i].dataValues.date %><br>
+  </div><br>
+  <% } %>
+</center></body>
+</html>

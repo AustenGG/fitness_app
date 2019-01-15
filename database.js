@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('fitness', 'jordanbailey', 'Dyjjmsr123d', {
+const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -46,6 +46,23 @@ const Workout = sequelize.define('workout', {
   }
 });
 
+const Weight = sequelize.define('weight', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement : true
+  },
+  user: {
+    type: Sequelize.STRING
+  },
+  weight: {
+    type: Sequelize.INTEGER
+  },
+  date: {
+    type: Sequelize.DATEONLY
+  }
+});
+
 const Users = sequelize.define('users', {
   id: {
     type: Sequelize.INTEGER,
@@ -64,6 +81,7 @@ const Users = sequelize.define('users', {
 Users.sync();
 Water.sync();
 Workout.sync();
+Weight.sync();
 
 exports.register = function(req, res) {
   var username = req.body.username;
@@ -199,12 +217,21 @@ exports.getHome = function(req, res) {
       order: [ [ 'createdAt', 'DESC' ]]
     }).then(workoutData => {
       //workoutData = data;
-      var data = [];
-      data.push(waterData);
-      data.push(workoutData);
-      //console.log(data);
-      //console.log(data[0][0].dataValues.amount);
-      res.render('home.ejs', {data: data, user});
+      Weight.findAll({
+        limit: 1,
+        where: {user: user},
+        order: [ [ 'date', 'DESC' ]]
+      }).then(weightData => {
+        //workoutData = data;
+        var data = [];
+        data.push(waterData);
+        data.push(workoutData);
+        data.push(weightData);
+        //console.log(data);
+        //console.log(data[0][0].dataValues.amount);
+        res.render('home.ejs', {data: data, user});
+
+      });
     });
   });
 
@@ -212,3 +239,47 @@ exports.getHome = function(req, res) {
   //console.log(waterData);
   //console.log(workoutData);
 };
+
+exports.addWeight = function(req, res) {
+  var weight = req.body.weight;
+  var date = req.body.date;
+  var user = req.session.username;
+  Weight.findOne({
+    where: {user: user, date: date}
+  }).then(result => {
+    if (weight == "" || date == "") {
+      res.redirect('/weight');
+    }
+    else if (result == null) {
+      Weight.create({
+        user: user,
+        weight: weight,
+        date: date
+      });
+      res.redirect('/weight');
+    }
+    else {
+      res.send({
+        "code":204,
+        "fail":"Entry for that date already exists"
+      });
+    }
+  });
+};
+
+exports.getWeight = function(req, res) {
+  var user = req.session.username;
+  Weight.findAll( {where: {user: user},
+    order: [ [ 'date', 'DESC' ]]}).then(data => {
+      if (data == null) {
+        //Represents if username not found
+        res.send({
+          "code":204,
+          "fail":"No information for current user"
+        });
+      }
+      else {
+        res.render('weight.ejs', { data: data, user});
+      }
+    });
+  };
