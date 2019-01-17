@@ -279,7 +279,13 @@ exports.getWeight = function(req, res) {
         });
       }
       else {
-        res.render('weight.ejs', { data: data, user});
+        var weight_data = [];
+        var date_data = [];
+        for (var i=0; i < data.length; i++) {
+          weight_data.push(data[i].dataValues.weight);
+          date_data.push(data[i].dataValues.date);
+        }
+        res.render('weight.ejs', {weight_data, date_data, user});
       }
     });
   };
