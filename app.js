@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.set('view engine', 'ejs');
 //GET requests
 app.get('/BMI', function(req, res) {
   if (req.session.username == null) {
@@ -24,12 +24,12 @@ app.get('/BMI', function(req, res) {
       res.render('BMI.ejs');
   }
 });
-app.get('/calorie_counter', function(req, res) {
+app.get('/BMR', function(req, res) {
   if (req.session.username == null) {
     res.redirect('/login');
   }
   else {
-    res.render('calorie_counter.ejs');
+    res.render('BMR.ejs');
   }
 });
 app.get('/', function(req, res) {
@@ -40,7 +40,8 @@ app.get('/home', function(req, res) {
     res.redirect('/login');
   }
   else {
-    res.render('home.ejs', {user: req.session.username});
+    db.getHome(req, res);
+    //res.render('home.ejs', {user: req.session.username});
   }
 });
 app.get('/water', (req, res) => {
@@ -72,6 +73,14 @@ app.get('/food', function(req, res) {
     db.getFood(req, res);
   }
 });
+app.get('/weight', function(req, res) {
+  if (req.session.username == null) {
+    res.redirect('/login');
+  }
+  else {
+    db.getWeight(req, res);
+  }
+});
 app.get('/register', function(req, res) {
   res.render('register.ejs');
 });
@@ -91,5 +100,6 @@ app.post('/register', db.register);
 app.post('/login', db.login);
 app.post('/addworkout', db.addWorkout);
 app.post('/addfood', db.addFood);
+app.post('/weight', db.addWeight);
 
 app.listen(port, () => console.log(`The app is running on port: ${port}! Make sure to open it in your browser!`));

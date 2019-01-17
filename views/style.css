@@ -158,3 +158,31 @@ display: none;
   height: calc(100vh - 50px);
   overflow-y: auto;
 }
+.postbox {
+  width: 550px;
+  border-style: solid, 2px;
+  margin: auto;
+  text-align: center;
+}
+#postbox {
+  width: 550px;
+  border-style: solid, 2px;
+  margin: auto;
+  text-align: center;
+}
+
+{
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("72572609-fitness-background.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
