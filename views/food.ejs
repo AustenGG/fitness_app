@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <div class="nav">
+    <div class="nav-header">
+      <div class="nav-title">
+
+      </div>
+    </div>
+    <input type="checkbox" id="nav-check">
+    <div class="nav-links2">
+      <a href="login">Login </a>
+    </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+    <input type="checkbox" id="nav-check">
+    <div class="nav-links">
+      <a href="/home" >Home</a>
+      <a href="/BMI" >BMI</a>
+      <a href="/calorie_counter" >Calorie Counter</a>
+      <a href="/workout">Workout</a>
+      <a href="/water">Water Intake</a>
+      <a href="/food" >Food</a>
+
+    </div>
+  </div>
+
+  <meta charset="utf-8">
+</head>
+  <body>
+  <h1> Food tracker! </h1>
+    <h2> Enter a food </h2>
+    <form action="/addfood" method="POST" class="form-horizontal">
+      <input type="text" name="food" placeholder="Enter a food">
+      <input type="text" name="calories" placeholder="Enter number of calories">
+
+      <input type="submit" action = "Submit" name="Submit" value="Submit" class="btn"><br><br>
+
+      <h3><%= user %>'s food consumption:</h3><br>
+      <% for (var i=0; i < data.length; i++) { %>
+        <div>
+          <b>Food: </b><%= data[i].dataValues.food %><br>
+          <b>Calories: </b><%= data[i].dataValues.calories %><br>
+
+          <!-- <b>When: </b><%= data[i].dataValues.createdAt %><br> -->
+        </div><br>
+        <% } %>
+      </body>
+      </html>

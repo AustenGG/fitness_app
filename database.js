@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('fitness', 'rhydian', 'password', {
+const sequelize = new Sequelize('fitness', 'jordanbailey', 'Dyjjmsr123d', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -45,6 +45,22 @@ const Workout = sequelize.define('workout', {
     type: Sequelize.STRING
   }
 });
+const Food = sequelize.define('food', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  user: {
+    type: Sequelize.STRING
+  },
+  food: {
+    type: Sequelize.STRING
+  },
+  calories: {
+    type: Sequelize.STRING
+  }
+});
 
 const Weight = sequelize.define('weight', {
   id: {
@@ -82,6 +98,8 @@ Users.sync();
 Water.sync();
 Workout.sync();
 Weight.sync();
+Food.sync();
+
 
 exports.register = function(req, res) {
   var username = req.body.username;
@@ -183,7 +201,7 @@ exports.getWorkouts = function(req, res) {
       });
     }
     else {
-      //console.log(data);
+      console.log(data);
       res.render('workout.ejs', { data: data, user});
     }
   });
@@ -265,6 +283,23 @@ exports.addWeight = function(req, res) {
       });
     }
   });
+}
+exports.getFood = function(req, res) {
+  var user = req.session.username;
+  //console.log(user);
+  Food.findAll( {where: {user: user} }).then(data => {
+    if (data == null) {
+      //Represents if username not found
+      res.send({
+        "code":204,
+        "fail":"No information for current user"
+      });
+    }
+    else {
+      console.log(data);
+      res.render('food.ejs', { data: data, user});
+    }
+  });
 };
 
 exports.getWeight = function(req, res) {
@@ -289,3 +324,16 @@ exports.getWeight = function(req, res) {
       }
     });
   };
+//Adds a workout to the database
+exports.addFood = function(req, res) {
+  var food = req.body.food;
+  var user = req.session.username;
+  var calories = req.body.calories;
+  Food.create({
+    user: user,
+    food: food,
+    calories: calories
+
+  });
+  res.redirect('/food');
+};
