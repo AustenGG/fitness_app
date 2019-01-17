@@ -40,6 +40,7 @@ app.get('/home', function(req, res) {
     res.redirect('/login');
   }
   else {
+    res.status(200).send('ok');
     db.getHome(req, res);
     //res.render('home.ejs', {user: req.session.username});
   }
