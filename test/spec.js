@@ -12,12 +12,12 @@ describe('loading express', function () {
     .get('/')
     .expect(200, done);
   });
-  it('404 everything else', function testPath(done) {
+  it('404 non exixtent pages', function testPath(done) {
     request(server)
       .get('/foo/bar')
       .expect(404, done);
   });
-  it('redirects to login when not logged in', function testPath(done) {
+  it('all pages found', function testPath(done) {
     request(server)
       .get('/home')
       .expect(302, done);
