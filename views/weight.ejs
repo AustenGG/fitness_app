@@ -36,7 +36,7 @@
         var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: date_data,
+            labels: date_data.reverse(),
             datasets: [{
               label: 'Weight History',
               data: weight_data,
